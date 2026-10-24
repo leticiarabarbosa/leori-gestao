@@ -1,0 +1,10 @@
+{
+  "name": "Leori Gestão",
+  "short_name": "Leori",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f3",
+  "theme_color": "#57534e",
+  "lang": "pt-BR",
+  "icons": [{ "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
