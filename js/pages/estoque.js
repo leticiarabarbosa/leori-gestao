@@ -115,13 +115,13 @@ export function materialForm(m = null, preset = {}) {
         const unNome = { g: 'gramas', kg: 'quilos', m: 'metros', cm: 'centímetros', un: 'unidades', par: 'pares', novelo: 'novelos', pacote: 'pacotes' }[un] || un;
         g('#lConteudo').textContent = `Quanto vem em 1 ${emb} (${un})`;
         g('#lPreco').textContent = `Preço de 1 ${emb} (R$)`;
-        g('#lQtd').textContent = `Quantidade atual (${un})`;
-        g('#lMin').textContent = `Quantidade mínima (${un})`;
+        g('#lQtd').textContent = `Atual (${un})`;
+        g('#lMin').textContent = `Mínimo (${un})`;
         g('#lQtdE').textContent = `ou em ${plural(2, emb)}`;
         g('#lMinE').textContent = `ou em ${plural(2, emb)}`;
         md.querySelector('#fMat p.muted').textContent = `Digite em ${unNome} ou em ${plural(2, emb)}: um campo acompanha o outro. Abaixo do mínimo, o material aparece como "Repor".`;
         g('#mCusto').innerHTML = c > 0 && preco > 0
-          ? `${icon('check', 14)} Custo calculado: <b>${custoTxt(preco / c)} por ${esc(un)}</b> — é esse valor que vai para a precificação.`
+          ? `<span style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap">${icon('check', 14)} Custo calculado: <b>${custoTxt(preco / c)} por ${esc(un)}</b> — é esse valor que vai para a precificação.</span>`
           : 'Preencha quanto vem e o preço para o sistema calcular o custo por ' + esc(un) + '.';
         ['#mQtdE', '#mMinE'].forEach(id => { g(id).disabled = !(c > 0); });
       };
