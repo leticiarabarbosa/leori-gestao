@@ -2,6 +2,11 @@
 
 Sistema web de gestão do ateliê de amigurumis em crochê **Leori**: clientes, caixa da empresa, precificação, estoque, preços de fornecedores e cronômetro de produção, com resumos por período.
 
+- **Site (Vercel, principal):** https://leori-gestao.vercel.app — publica sozinho a cada envio para a branch `main`.
+- **Site reserva (GitHub Pages):** https://leticiarabarbosa.github.io/leori-gestao/
+- **Firebase:** projeto `leori-gestao` — https://console.firebase.google.com/project/leori-gestao/overview
+- Para atualizar as regras do banco: `firebase deploy --only firestore:rules`
+
 ## Telas
 
 | Tela | O que faz |
