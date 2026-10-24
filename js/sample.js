@@ -27,7 +27,11 @@ export function sample() {
     ['Cordão espaguete', 'Cordão espaguete', 'm', 0, 10, 0.5, 'Armarinho Central'],
     ['Agulha 2,5 mm', 'Agulha', 'un', 2, 1, 14, 'Loja do Crochê (site)'],
     ['Saquinho de organza', 'Embalagem', 'un', 25, 15, 0.8, 'Embalagens Já']
-  ].map(([nome, categoria, unidade, quantidade, minimo, custoUnit, fornecedor], i) => ({ id: 'm' + i, nome, categoria, unidade, quantidade, minimo, custoUnit, fornecedor }));
+  ].map(([nome, categoria, unidade, quantidade, minimo, custoUnit, fornecedor], i) => {
+    // embalagem de compra: [nome, conteúdo]
+    const emb = [['novelo', 125], ['novelo', 65], ['novelo', 65], ['pacote', 1000], ['cartela', 20], ['rolo', 10], ['rolo', 20], ['unidade', 1], ['pacote', 50]][i];
+    return { id: 'm' + i, nome, categoria, unidade, quantidade, minimo, custoUnit, fornecedor, nomeEmb: emb[0], conteudoEmb: emb[1], precoEmb: Math.round(custoUnit * emb[1] * 100) / 100 };
+  });
   const precos = [];
   const forn = [['Armarinho Central', 'fisica', 0], ['Loja do Crochê (site)', 'site', 18], ['Mercado Fios (site)', 'site', 12]];
   [[0, 'Fio Amigurumi branco', 125, 19.9], [3, 'Fibra siliconada', 1000, 38], [4, 'Olhos de segurança 9 mm', 20, 11]].forEach(([mi, mat, q, base]) => {

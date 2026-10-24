@@ -104,6 +104,26 @@ export function statusMaterial(m) {
 }
 export const materiaisParaRepor = () => store.data.materiais.filter(m => statusMaterial(m).key !== 'ok');
 
+// Embalagem em que o material é comprado (ex.: novelo de 65 g por R$ 16,99).
+// Materiais antigos, sem embalagem, contam como embalagem de 1 unidade ao custo unitário.
+export const EMBALAGENS = ['novelo', 'rolo', 'pacote', 'cartela', 'caixa', 'unidade'];
+export function embPadrao(categoria) {
+  return { 'Fio': 'novelo', 'Arame': 'rolo', 'Cordão espaguete': 'rolo', 'Olhos de segurança': 'cartela' }[categoria] || 'pacote';
+}
+export function embalagem(m) {
+  const conteudo = Number(m.conteudoEmb) > 0 ? Number(m.conteudoEmb) : 1;
+  const preco = m.precoEmb != null && m.precoEmb !== '' ? Number(m.precoEmb) || 0 : (Number(m.custoUnit) || 0) * conteudo;
+  return { conteudo, preco, nome: m.nomeEmb || (Number(m.conteudoEmb) > 0 ? embPadrao(m.categoria) : m.unidade || 'un'), temEmb: Number(m.conteudoEmb) > 1 };
+}
+export const plural = (n, palavra) => (Math.abs(n - 1) < 1e-9 ? palavra : palavra.replace(/(ão)$/, 'ões').replace(/([^s])$/, '$1s'));
+// "3 novelos" (ou "2,5 novelos")
+export function emEmbalagens(m, qtd) {
+  const e = embalagem(m);
+  if (!e.temEmb) return '';
+  const n = (Number(qtd) || 0) / e.conteudo;
+  return `${n.toLocaleString('pt-BR', { maximumFractionDigits: 1 })} ${plural(n, e.nome)}`;
+}
+
 // ── Preços de fornecedores ───────────────────────────────────────
 export function custoRegistro(r) {
   const total = (Number(r.preco) || 0) + (Number(r.frete) || 0);

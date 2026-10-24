@@ -41,7 +41,7 @@ export const TABELAS = {
   ] },
   materiais: { nome: 'Estoque', cols: [
     ['Material', m => m.nome], ['Categoria', m => m.categoria], ['Unidade', m => m.unidade], ['Quantidade atual', m => m.quantidade], ['Quantidade mínima', m => m.minimo],
-    ['Situação', m => statusMaterial(m).label], ['Custo por unidade', m => n2(m.custoUnit)], ['Fornecedor', m => m.fornecedor], ['Observações', m => m.obs]
+    ['Situação', m => statusMaterial(m).label], ['Embalagem', m => m.conteudoEmb ? `${m.nomeEmb || ''} de ${m.conteudoEmb} ${m.unidade}` : ''], ['Preço da embalagem', m => m.precoEmb != null ? n2(m.precoEmb) : ''], ['Custo por unidade', m => Math.round((Number(m.custoUnit) || 0) * 10000) / 10000], ['Fornecedor', m => m.fornecedor], ['Observações', m => m.obs]
   ] },
   precos: { nome: 'Preços fornecedores', cols: [
     ['Data', r => fmtDate(r.data)], ['Material', r => r.material], ['Fornecedor', r => r.fornecedor], ['Tipo', r => r.tipoLoja === 'fisica' ? 'Loja física' : 'Site'],

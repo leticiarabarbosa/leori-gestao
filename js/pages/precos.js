@@ -123,8 +123,8 @@ export default {
     $('#pcUsar')?.addEventListener('click', async () => {
       const m = store.data.materiais.find(x => norm(x.nome) === norm(matSel));
       const v = Math.round(custoRegistro(best).porUnidade * 10000) / 10000;
-      await store.save('materiais', { ...m, custoUnit: v, fornecedor: best.fornecedor });
-      toast(`Custo de ${m.nome} atualizado para ${money(v)}.`);
+      await store.save('materiais', { ...m, custoUnit: v, fornecedor: best.fornecedor, conteudoEmb: Number(best.qtdEmbalagem) || 1, precoEmb: Math.round(custoRegistro(best).total * 100) / 100 });
+      toast(`Custo de ${m.nome} atualizado: ${money(custoRegistro(best).total)} a embalagem (com frete).`);
     });
   },
   destroy: destroyCharts
