@@ -51,7 +51,7 @@ function renderLogin(mode = 'entrar') {
         <button class="btn btn-primary" type="submit">${mode === 'esqueci' ? 'Enviar link de recuperação' : titles[mode]}</button>
         <div class="login-links">
           ${mode === 'entrar'
-            ? `<button type="button" class="link-btn" data-mode="esqueci">Esqueci minha senha</button><button type="button" class="link-btn" data-mode="criar">Criar conta</button>`
+            ? `<button type="button" class="link-btn" data-mode="esqueci">Esqueci minha senha</button>${store.DEMO ? '<button type="button" class="link-btn" data-mode="criar">Criar conta</button>' : ''}`
             : `<button type="button" class="link-btn" data-mode="entrar">Voltar para o login</button>`}
         </div>
         ${store.DEMO ? `<div class="demo-note"><b>Modo demonstração:</b> o Firebase ainda não foi configurado. Qualquer e-mail e senha entram e os dados ficam só neste navegador.</div>` : ''}

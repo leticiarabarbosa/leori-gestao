@@ -90,7 +90,8 @@ const AUTH_ERR = {
   'auth/weak-password': 'Senha fraca: use pelo menos 8 caracteres.',
   'auth/too-many-requests': 'Muitas tentativas. Aguarde alguns minutos e tente de novo.',
   'auth/network-request-failed': 'Sem conexão com a internet.',
-  'auth/operation-not-allowed': 'Login por e-mail/senha não está ativado no Firebase.'
+  'auth/operation-not-allowed': 'Login por e-mail/senha não está ativado no Firebase.',
+  'auth/admin-restricted-operation': 'Novos cadastros estão desativados. Fale com a administradora do sistema.'
 };
 export const authError = e => AUTH_ERR[e?.code] || e?.message || 'Não foi possível concluir.';
 
